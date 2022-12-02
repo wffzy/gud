@@ -1,5 +1,5 @@
 # Thanks for cumming on the Billing System for Pterodactyl
-# Addon by CumArchon69420 for Pterodactyl 1.7.0
+# Addon by CumArchon69420 for Pterodactyl 1.10.4
 
 Before proceeding with installation make sure you have checked the following things:
 
