@@ -3,7 +3,7 @@
 
 Before proceeding with installation make sure you have checked the following things:
 
-* Make sure you're running the latest version of Pterodactyl
+* Make sure you're running the v1.10.4 of Pterodactyl
 * Pterodactyl must be completely stock with no addons installed, to remove any addons you can run the pterodactyl update script.
 * Dont be a cancer and upload them however you want i dont give a fuck
 * Make sure yarn is installed
