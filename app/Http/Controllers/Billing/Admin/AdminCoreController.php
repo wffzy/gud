@@ -228,6 +228,7 @@ class AdminCoreController extends Controller
       return redirect()->back()->with('warning', 'The order does not exist or was already deleted');
     }
 
+    Bill::servers()->remove($invoice->server_id);
     $invoice->delete();
     return redirect()->back()->with('warning', 'The order was deleted');
   }
@@ -280,6 +281,20 @@ class AdminCoreController extends Controller
 
     }
 
+  }
+
+  public function tickets()
+  {
+    return view('templates.' . $this->template . '.billing.admin.tickets.list', ['tickets' => Bill::tickets()->orderByRaw('updated_at DESC')->paginate(15)]);
+  }
+
+  public function manageTicket($id)
+  {
+    $ticket =  Bill::tickets()->findOrFail($id);
+    $responses = Bill::tickets()->response()->where('uuid', $ticket->uuid)->latest()->paginate(5);
+    $user = User::findOrFail($ticket->user_id);
+
+    return view('templates.' . $this->template . '.billing.admin.tickets.manage', ['ticket' => $ticket, 'responses' => $responses, 'user' => $user]);
   }
 
   public function games()

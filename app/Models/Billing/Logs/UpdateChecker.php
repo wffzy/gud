@@ -27,25 +27,24 @@ class UpdateChecker
   {
     $this->key = Bill::settings()->getParam('license_key');
     $this->app = parse_url(config('app.url'))['host'];
-    $this->ip = exec('curl ifconfig.me 2>/dev/null');
   }
 
-  public function update()
-  {
+public function update()
+{
     if (!Cache::has('bill')) {
-      $upd = false;
-      if (\Route::is('admin.update')) {
-        return;
-      }
+        $upd = false;
+        if (\Route::is('admin.update')) {
+            return;
+        }
 
-      if ($upd) {
+    if ($upd) {
         return redirect()->to('/billing/admin/update')->send();
-      } else {
-          Cache::put('bill', 'update', now()->addMinutes(120));
-      }
+    } else {
+        Cache::put('bill', 'update', now()->addMinutes(120));
+    }
     }
 
-  }
+}
 
   public function getData()
   {

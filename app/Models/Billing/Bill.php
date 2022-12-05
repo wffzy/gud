@@ -175,19 +175,19 @@ class Bill extends Model
     return false;
   }
 
-  public static function getSubscriptionDetails()
-  {
+public static function getSubscriptionDetails()
+{
     if(!Cache::has('billing')) {
-      $response = json_decode('{
-    "response": true,
-    "description": "Your license was checked successfully.",
-    "subscription": "Premium",
-    "status": "active",
-    "expiry": "3999-12-29",
-    "expiry_in_days": 9999,
-    "buyer": "CumMan69420",
-    "subscription_id": "120176",
-    "permissions": [
+        $response = json_decode('{
+        "response": true,
+        "description": "Your license was checked successfully.",
+        "subscription": "Premium",
+        "status": "active",
+        "expiry": "3999-12-29",
+        "expiry_in_days": 9999,
+        "buyer": "CumMan69420",
+        "subscription_id": "120176",
+        "permissions": [
         "plugin_installer",
         "logs",
         "emails",
@@ -198,20 +198,29 @@ class Bill extends Model
         "affiliates",
         "advancedlogs",
         "unbranded"
-    ],
-    "updated_at": "2022-11-29T17:10:19.000000Z",
-    "created_at": "2022-11-29T17:10:19.000000Z"
-}');
-      Cache::put('billing', $response, now()->addMinutes(720)); 
+        ],
+        "updated_at": "2022-11-29T17:10:19.000000Z",
+        "created_at": "2022-11-29T17:10:19.000000Z"
+        }');
+        Cache::put('billing', $response, now()->addMinutes(720));
     }
-    
-    return Cache::get('billing');
-  }
 
-  public static function allowed($area)
-  {
+return Cache::get('billing');
+}
+
+public static function allowed($area)
+{
     return true;
 
-  }
+}
 
+  public static function isPluginPerms($server)
+  {
+    $uServers = BillingUsers::getUserServersData(Auth::user()->id);
+
+    if (!isset($uServers[$server])) {
+      return false;
+    }
+    return true;
+  }
 }

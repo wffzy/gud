@@ -36,11 +36,12 @@ Orders
             </div>
                           @if(!empty($orders))
                             @foreach($orders as $key => $order)
-                            @php $user = Auth::user()->find($order['user_id']); $plan = Bill::plans()->find($order['plan_id']) @endphp
+                            @php $user = Auth::user()->find($order['user_id']); $plan = Bill::plans()->find($order['plan_id'])
+                            @endphp
                             <div class="col-sm-4">
                                 <div class="box @if($order['status'] == "Paid")box-success @else box-danger @endif">
                                     <div class="box-header with-border">
-                                        <h3 class="box-title flex center space-between">#{{ $order['id'] }} Gras Tier II <span class="label @if($order['status'] == "Paid")label-success @else label-danger @endif">{{ $order['status'] }}</span></h3>
+                                        <h3 class="box-title flex center space-between">#{{ $order['id'] }} {{ $plan->name }} <span class="label @if($order['status'] == "Paid")label-success @else label-danger @endif">{{ $order['status'] }}</span></h3>
                                     </div>
                                     <div class="box-body">
                                         <p>

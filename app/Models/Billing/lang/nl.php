@@ -43,6 +43,7 @@ return [
   'admin_page' => 'Administrator',
   'out_page' => 'Uitloggen',
   'plugin_page' => 'Plugins',
+  'version_page' => 'Version',
 
   // Account
   'account_balance' => 'Account Saldo',

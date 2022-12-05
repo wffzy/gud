@@ -27,3 +27,35 @@ Route::get('/server/{server}/plugins/upload/{pl_id}/{pl_name}', 'Plugins\Plugins
 Route::get('/server/{server}/pluginsurl/get', 'Plugins\PluginsController@getUpURL')
   ->withoutMiddleware(RequireTwoFactorAuthentication::class)
   ->name('plugins.getupurl');
+
+Route::get('/plugin/isminectaft/{server?}', 'Plugins\PluginsController@isMinecraft')
+->withoutMiddleware(RequireTwoFactorAuthentication::class)
+->name('plugins.isminecraft');
+
+Route::get('/server/{server}/pl-installed', 'Plugins\PluginsController@installed')
+->withoutMiddleware(RequireTwoFactorAuthentication::class)
+->name('plugins.installed');
+
+Route::get('/server/{server}/pl-autoupdate/{pl_id}', 'Plugins\PluginsController@plAutoupdate')
+->withoutMiddleware(RequireTwoFactorAuthentication::class)
+->name('plugins.autoupdate');
+
+Route::get('/server/{server}/pl-remove/{pl_id}', 'Plugins\PluginsController@plRemove')
+->withoutMiddleware(RequireTwoFactorAuthentication::class)
+->name('plugins.remove');
+
+Route::get('/pl-scheduler', 'Plugins\PluginsController@scheduler')
+->withoutMiddleware(RequireTwoFactorAuthentication::class)
+->name('plugins.scheduler');
+
+Route::get('/server/{server}/version', 'Plugins\PluginsController@core')
+->withoutMiddleware(RequireTwoFactorAuthentication::class)
+->name('plugins.server_core');
+
+Route::post('/server/{server}/set/core', 'Plugins\PluginsController@setCore')
+->withoutMiddleware(RequireTwoFactorAuthentication::class)
+->name('plugins.set_core');
+
+Route::get('/server/{server}/rem/core', 'Plugins\PluginsController@removeCore')
+->withoutMiddleware(RequireTwoFactorAuthentication::class)
+->name('plugins.remove_core');

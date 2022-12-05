@@ -43,6 +43,7 @@ return [
   'admin_page' => 'Админ',
   'out_page' => 'Выйти',
   'plugin_page' => 'Плагины',
+  'version_page' => 'Version',
 
   // Account
   'account_balance' => 'Баланс аккаунта',

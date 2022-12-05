@@ -44,19 +44,16 @@ class BillingInvoices extends Model
 
   public function upgradeOrDowngrade($invoice_id, $upgrade_plan_id, $upgrade_cost = NULL)
   {
-    $invoice = $this->find($invoice_id)->first();
-    
+    // Update Plan
+    $invoice = $this->findOrFail($invoice_id);
+    $invoice->plan_id = $upgrade_plan_id;
+    $invoice->save();
+
     // deduct from balance
     if($upgrade_cost !== NULL) {
     $user = Bill::users()->getAuth();
     $user->editBalance($upgrade_cost, '-');
     }
-
-    // Update Plan
-    $this->where('id', $invoice->id)->where('user_id', Auth::user()->id)
-    ->update([
-        'plan_id' => $upgrade_plan_id
-    ]);
 
     // Update Server Resources
     $plan =  Bill::plans()->find($upgrade_plan_id);

@@ -42,6 +42,7 @@ return [
   'account_page' => 'Cuenta',
   'admin_page' => 'Admin',
   'out_page' => 'Cerrar sesión',
+  'version_page' => 'Version',
  
   // Account
   'account_balance' => 'Saldo de la cuenta',

@@ -44,6 +44,7 @@ return [
   'admin_page' => 'Admin',
   'out_page' => 'Ausloggen',
   'plugin_page' => 'Plugins',
+  'version_page' => 'Version',
 
   // Account
   'account_balance' => 'Kontostand',

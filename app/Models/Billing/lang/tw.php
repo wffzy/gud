@@ -43,6 +43,7 @@ return [
   'admin_page' => '管理員',
   'out_page' => '登出',
   'plugin_page' => '插件',
+  'version_page' => 'Version',
   
   // Account
   'account_balance' => '帳戶餘額',

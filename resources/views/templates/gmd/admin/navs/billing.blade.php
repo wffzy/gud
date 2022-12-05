@@ -5,5 +5,11 @@
     </a>
 </li>
 
+<li class="{{ ! starts_with(Route::currentRouteName(), 'admin.tickets') ?: 'active' }}">
+    <a href="{{ route('admin.tickets') }}">
+        <i class="fa fa-ticket"></i> <span>Tickets</span>
+    </a>
+</li>
+
 
 

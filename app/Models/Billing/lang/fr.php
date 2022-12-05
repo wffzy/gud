@@ -43,7 +43,7 @@ return [
   'admin_page' => 'Admin',
   'out_page' => 'Déconnexion',
   'plugin_page' => 'Plugins',
-
+  'version_page' => 'Version',
   // Account
   'account_balance' => 'Solde du compte',
   'paypal' => 'PayPal',

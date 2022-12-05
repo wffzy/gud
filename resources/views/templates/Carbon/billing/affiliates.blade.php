@@ -41,6 +41,47 @@
             <div class="alert alert-info" role="alert">
               You need a minimun of {{$settings['currency_symbol']}}10.00 {{$settings['paypal_currency']}} to cashout.
             </div>
+
+            <div class="card-body pt-4">
+               <h3>Leaderbords</h3>
+               <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                     <thead class="thead-light">
+                           <tr>
+                              <th scope="col" class="sort" data-sort="username" style="background:transparent !important;">Username / Code</th>
+                              <th scope="col" class="sort" data-sort="clicks" style="background:transparent !important;">Clicks</th>
+                              <th scope="col" class="sort" data-sort="purchases" style="background:transparent !important;">Purchases</th>
+                           </tr>
+                     </thead>
+                     <tbody class="list">
+                        @php use Pterodactyl\Models\User; @endphp
+                        @foreach(Bill::affiliates()->orderByRaw('purchases DESC')->paginate(5) as $affiliate)
+                           @if(User::where('id', $affiliate->user_id)->exists())
+                           <tr>
+                              <th scope="row">
+                                 <div class="media align-items-center">
+                                       <a href="#" class="avatar rounded-circle mr-3">
+                                          <img alt="Image placeholder" src="https://www.gravatar.com/avatar/{{ md5(strtolower(User::find($affiliate->user_id)->email)) }}?s=160" />
+                                       </a>
+                                       <div class="media-body">
+                                          <span class="username mb-0 text-sm">{{ User::find($affiliate->user_id)->username }} ({{ $affiliate->code }})</span>
+                                       </div>
+                                 </div>
+                              </th>
+                              <td class="clicks">
+                                 {{ $affiliate->clicks }} clicks
+                              </td>
+                              <td>
+                                 {{ $affiliate->purchases }} purchases
+                              </td>
+                           </tr>
+                           @endif
+                        @endforeach
+                     </tbody>
+                  </table>
+               </div>
+
+            </div>
          </div>
          <div class="col-xl-8 order-xl-1">
             <div class="row">

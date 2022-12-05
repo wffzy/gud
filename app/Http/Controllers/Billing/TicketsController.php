@@ -50,6 +50,7 @@ class TicketsController extends Controller
     ]);
     
     $ticket = Bill::tickets()->createTicket($request->input('subject'), $request->input('service'), 'Open', $request->input('priority'), $request->input('response'));
+    Bill::events()->create('client', Auth::user()->id, 'client:ticket:created', Auth::user()->username.' has created a new ticket #'.$ticket->uuid);
 
     return redirect(route('tickets.manage', ['uuid' => $ticket->uuid]))->withSuccess('Your ticket has been created');
   }
@@ -59,7 +60,7 @@ class TicketsController extends Controller
     $ticket = Bill::tickets()->where('uuid', $uuid)->first();
     
     if($ticket == NULL) {
-      return redirect()->back()->withErrors('We could not locate your ticket, it must have been deleted.');
+      return redirect(route('tickets.index'))->withErrors('We could not locate your ticket, it must have been deleted.');
     }
 
     if($ticket->user_id !== Auth::user()->id) {
@@ -67,7 +68,8 @@ class TicketsController extends Controller
     }
 
     $responses = Bill::tickets()->response()->where('uuid', $uuid)->orderBy('id', 'DESC')->get();
-    $user = new User;
+    $user = User::findOrFail($ticket->user_id);
+
     return view('templates.' . $this->getTemplate() . '.billing.tickets.manage', ['ticket' => $ticket, 'responses' => $responses, 'user' => $user,'settings' => Bill::settings()->getAll()]);
   }
 
@@ -77,17 +79,54 @@ class TicketsController extends Controller
       'response' => 'required|max:3000',
     ]);
 
+    if(strlen($request->input('response')) < 100) {
+      return redirect()->back()->withErrors('Your response must be greater than 4 characters.');
+    }
+
     $ticket = Bill::tickets()->where('uuid', $uuid)->first();
     
     if($ticket == NULL) {
-      return redirect()->back()->withErrors('We could not locate your ticket, it must have been deleted.');
+      return redirect('billing.tickets')->withErrors('We could not locate your ticket, it must have been deleted.');
     }
 
-    if($ticket->user_id !== Auth::user()->id) {
+    if($ticket->user_id !== Auth::user()->id AND !Auth::user()->root_admin) {
       return redirect()->back()->withErrors('You dont have permissions to access this resource');
     }
 
     Bill::tickets()->response()->new($uuid, $request->input('response'));
+    return redirect()->back();
+  }
+
+  public function delete($uuid)
+  {
+    $ticket = Bill::tickets()->where('uuid', $uuid)->first();
+    if (!Auth::user()->root_admin) {
+      return redirect()->back();
+    }
+
+    $responses = Bill::tickets()->response()->where('uuid', $uuid)->get();
+    foreach($responses as $response) {
+      $response->delete();
+    }
+
+    $ticket->delete();
+    Bill::events()->create('admin', Auth::user()->id, 'admin:ticket:delete', Auth::user()->username.' (admin) has deleted ticket #'.$uuid);
+
+    return redirect(route('admin.tickets'))->withSuccess('Ticket has been deleted.');
+  }
+
+  public function statusSwitch($uuid)
+  {
+    $ticket = Bill::tickets()->where('uuid', $uuid)->first();
+    if (Auth::user()->id != $ticket->user_id AND !Auth::user()->root_admin) {
+      return redirect()->back();
+    }
+    if($ticket->status == 'Open'){
+      $ticket->status = 'Closed';
+    } else {
+      $ticket->status = 'Open';
+    }
+    $ticket->save();
     return redirect()->back();
   }
 

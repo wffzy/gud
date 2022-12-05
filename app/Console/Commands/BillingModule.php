@@ -27,9 +27,6 @@ class BillingModule extends Command
       case 'help':
         $this->help();
         break;
-      case 'check_version':
-        $this->checkVersion();
-        break;
       case 'uninstall':
         $this->uninstall();
         break;
@@ -51,28 +48,17 @@ class BillingModule extends Command
     $this->SshUser();
     
     if (!isset($this->install['lic_key'])) {
-      $lic_key = $this->ask("Please enter a license key.");
+      $lic_key = $this->ask("Please enter a license key. Enter cum69420 to pass license check!");
       $this->install['lic_key'] = $lic_key;
     }
 
     $this->infoNewLine("Your license key is: {$this->install['lic_key']}");
 
-    /*$req = $this->req("{$this->url}/{$this->install['lic_key']}");
-    $this->reqOut($req);
-    $this->prepare($req->args);
-
-
-    $req = $this->req($this->install['url']);
-    $this->reqOut($req, false);*/
-
     if ($this->install['lic_key'] == "cum69420") {
 
       $this->setApp();
 
-      /*$req = $this->req($this->install['url']);
-      $this->reqOut($req);
-
-      $this->debug();*/
+      //$this->debug();
       $this->infoNewLine("
       =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
         Thank you for \"purchasing\" the Billing Module
@@ -90,7 +76,7 @@ class BillingModule extends Command
       $this->infoNewLine("Install CloudFlare SDK");
       $this->shell('echo \"yes\" | composer require cloudflare/sdk');
 
-      $this->setupCron();
+      //$this->setupCron();
       $this->installSocialite();
 
       $this->infoNewLine("Compiling Panel Assets (This can take a minute, please wait...)");
@@ -159,6 +145,7 @@ class BillingModule extends Command
       Help:
       php artisan billing:install installer - updating the command to automatically install the module (recommended to run before each installation/update of the module)
       php artisan billing:install stable {license key}(optional) - install stable version
+      php artisan billing:install dev {license key}(optional) - install dev version(no recommend!!!)
       ';
     return $this->infoNewLine($help);
   }
@@ -183,15 +170,13 @@ class BillingModule extends Command
       $this->error('
       We have detected that you are not logged in as a root user.
       To run the auto-installer, it is recommended to login as root user.
-      If you are not logged in as root, we can not cum
-
+      If you are not logged in as root, some processes may fail to setup
       To login as root SSH user, please type the following command: sudo su
       and proceed to re-run the installer.
       alternatively you can contact your provider for ROOT user login for your machine.
       ');
 
-      
-     if($this->confirm('Stop the installer?', true)) {
+      if($this->confirm('Stop the installer?', true)) {
         $this->info('Installer has been cancelled.');
         exit;
       }
@@ -200,7 +185,7 @@ class BillingModule extends Command
 
   private function setApp()
   {
-    $alias1 = '\'View\' => Illuminate\Support\Facades\View::class,';
+    $alias1 = '\'Theme\' => Pterodactyl\Extensions\Facades\Theme::class,';
     $alias2 = '        \'Bill\' => Pterodactyl\Models\Billing\Bill::class,';
     $file = config_path() . '/app.php';
 
@@ -220,14 +205,14 @@ class BillingModule extends Command
   {
 
       if (version_compare(config('app.version'), '1.9.2') < 0) {
-          $this->error('Could not install Socialite SSO Logins, Socalite requires Cumdactyl 1.9.2 or above, you have [' . config('app.version') . '].');
+          $this->error('Could not install AntiSocialite SSO Logins, Socalite requires Pterodactyl 1.9.2 or above, you have [' . config('app.version') . '].');
           return 0;
       }
 
       $this->info('Downloading... AntiSocialite with Composer');
       $this->shell("echo \"yes\" | composer require laravel/socialite"); 
 
-      $this->info('Downloading... Discord (E-Girls chatroom) Driver');
+      $this->info('Downloading... Cumcord Driver');
       $this->shell("echo \"yes\" | composer require socialiteproviders/discord");
       
       $this->info("Clearing Laravel Cache");
@@ -250,7 +235,7 @@ class BillingModule extends Command
       $lic_key = $this->install['lic_key'];
     }
     $this->info("Your license key is: {$lic_key}");
-    $this->info("Success. Tell the sex developer that you used the cum command so that he checks the data");
+    $this->info("Success. Tell the module developer that you used the debug command so that he checks the data");
   }
 
   private function setupCron()
@@ -272,8 +257,7 @@ class BillingModule extends Command
   private function checkVersion()
   {
     $license = \Pterodactyl\Models\Billing\Bill::settings()->getParam('license_key');
-	return "6.9.420";
-    
+    return "6.9.420";
   }
 
   private function uninstall()

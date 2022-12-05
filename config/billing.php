@@ -5,13 +5,13 @@ return [
     |--------------------------------------------------------------------------
     | Billing module by CumArchon69420
     |--------------------------------------------------------------------------
-    | This file contains basic configuration options for the Cumming module, 
+    | This file contains basic configuration options for the Cumming module,
     */
 
     'name' => 'Billing',
     'system_lang' => 'English',
     'author' => 'Xudong Zhong',
-    'version' => '6.9.420',   
+    'version' => '3.2.0',
     'theme' => 'Carbon',
 
     /*

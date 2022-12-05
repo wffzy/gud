@@ -82,6 +82,6 @@ class DiscordLogs
 
   public function SendWebLog()
   {
-	  return;
+      return;
   }
 }

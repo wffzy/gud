@@ -81,9 +81,11 @@ class CartController extends Controller
   {
     $user_id = Auth::user()->id;
     foreach (Bill::cart()->where('user_id', $user_id)->get() as $value) {
-      if (!empty($plan = Bill::plans()->find($value->plan_id))) {
+      $plan = Bill::plans()->find($value->plan_id);
+      if (!empty($plan)) {
         $user = Bill::users()->getAuth();
         if ($user->balance >= $plan->price()['price']) {
+          Bill::cart()->where('id', $value->id)->delete();
           $server = Bill::servers()->create($user_id, $plan->id);
           if ($server['status']) {
 
@@ -98,9 +100,7 @@ class CartController extends Controller
               Bill::affiliates()->AddBalance($affiliate['code'], $creator_comission);
               $amount = $amount - $minus;
             }
-
             $user->editBalance($amount, '-');
-            Bill::cart()->where('id', $value->id)->delete();
           } else {
             return redirect()->back()->withErrors([Bill::lang()->get('err_create_server'), $server['text']]);
           }

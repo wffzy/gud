@@ -40,6 +40,7 @@ return [
   'account_page' => 'Account',
   'admin_page' => 'Admin',
   'out_page' => 'Log Out',
+  'version_page' => 'Version',
  
   // Account
   'account_balance' => 'Bilancio dell\'account',
