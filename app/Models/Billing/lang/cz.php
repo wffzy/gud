@@ -43,6 +43,7 @@ return [
   'admin_page' => 'Administrace',
   'out_page' => 'Odhlásit se',
   'plugin_page' => 'Pluginy',
+  'version_page' => 'Version',
  
   // Account
   'account_balance' => 'Peněženka',

@@ -20,6 +20,9 @@ Route::middleware(['web', 'auth', 'csrf'])->prefix(config('billing.path'))->name
     Route::post('/admin/order/{id}/update', 'Admin\AdminCoreController@updateOrder')->name('admin.billing.order.update');
     Route::post('/admin/order/create', 'Admin\AdminCoreController@createOrder')->name('admin.billing.order.create');
 
+    Route::get('/admin/tickets', 'Admin\AdminCoreController@tickets')->name('admin.tickets');
+    Route::get('/admin/ticket/{id}', 'Admin\AdminCoreController@manageTicket')->name('admin.ticket.manage');
+
     Route::get('/admin/impersonate/{id}', 'Admin\AdminCoreController@impersonate')->name('admin.billing.impersonate');
     Route::get('/admin/force/schedular', 'Admin\AdminCoreController@forceSchedular')->name('admin.billing.schedular');
 
@@ -107,13 +110,17 @@ Route::middleware(['web', 'auth', 'csrf'])->prefix(config('billing.path'))->name
   Route::get('/{game}/configure', 'PlansController@configure')->name('billing.plans.configure');
 
   // // Game Plans Route -> /billing/{game}/plans
-  // Route::get('/tickets', 'TicketsController@index')->name('tickets.index');
-  // Route::get('/tickets/new', 'TicketsController@newTicket')->name('tickets.new');
-  // Route::post('/tickets/new/create', 'TicketsController@newTicketCreate')->name('tickets.new.create');
+  Route::get('/tickets', 'TicketsController@index')->name('tickets.index');
+  Route::get('/tickets/new', 'TicketsController@newTicket')->name('tickets.new');
+  Route::post('/tickets/new/create', 'TicketsController@newTicketCreate')->name('tickets.new.create');
 
-  // Route::get('/ticket/{uuid}', 'TicketsController@manage')->name('tickets.manage');
-  // Route::post('/ticket/{uuid}/new', 'TicketsController@addResponse')->name('tickets.manage.response');
+  Route::get('/ticket/{uuid}', 'TicketsController@manage')->name('tickets.manage');
+  Route::post('/ticket/{uuid}/new', 'TicketsController@addResponse')->name('tickets.manage.response');
 
+  Route::get('/ticket/{uuid}', 'TicketsController@manage')->name('tickets.manage');
+  Route::post('/ticket/{uuid}/new', 'TicketsController@addResponse')->name('tickets.manage.response');
+  Route::get('/ticket/switch-status/{uuid}', 'TicketsController@statusSwitch')->name('tickets.switch');
+  Route::get('/ticket/delete/{uuid}', 'TicketsController@delete')->name('tickets.delete');
 
 });
 

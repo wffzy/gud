@@ -1,4 +1,4 @@
-# Thanks for cumming on the Billing System for Pterodactyl
+# Thanks for cumming on the Billing System for Pterodactyl v3.2.0
 # Addon by CumArchon69420 for Pterodactyl 1.10.4
 
 Before proceeding with installation make sure you have checked the following things:
@@ -27,6 +27,5 @@ For registration emails to work, make sure you have a SMTP server setup in your 
 Is the panel still default after step 5? 
 |--> Make sure the files have been replaced correctly by your FTP Program
 |--> Clear Laravel cache with following commands: php artisan view:clear && php artisan config:clear
-
 
 Need help? Join our discord: https://discord.gg/pornhub

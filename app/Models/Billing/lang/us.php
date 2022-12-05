@@ -43,6 +43,7 @@ return [
   'admin_page' => 'Admin',
   'out_page' => 'Log Out',
   'plugin_page' => 'Plugins',
+  'version_page' => 'Version',
   
   // Account
   'account_balance' => 'Account Balance',

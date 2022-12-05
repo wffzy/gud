@@ -43,6 +43,7 @@ return [
   'admin_page' => '最高管理エリア',
   'out_page' => 'ログアウト',
   'plugin_page' => 'Plugins',
+  'version_page' => 'Version',
 
   // Account
   'account_balance' => 'アカウント残高',

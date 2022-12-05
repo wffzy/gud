@@ -70,18 +70,20 @@
 
   function pluginPage(serversList){
 
-    var serverID = document.getElementById("serverid").innerHTML;
-    serverID = serverID.trim();
+    if(document.getElementById("serverid")){
+      var serverID = document.getElementById("serverid").innerHTML;
+      serverID = serverID.trim();
 
-    if (serversList.hasOwnProperty(serverID)) {
-        // var pluginPageStatus = serversList[serverID].plugins
-        // console.log(pluginPageStatus);
-        document.getElementById("sbPlugins").hidden = false;
-    } else {
-      // console.log(serversList);
-      document.getElementById("sbPlugins").hidden = true;
+      if (serversList.hasOwnProperty(serverID)) {
+          // var pluginPageStatus = serversList[serverID].plugins
+          // console.log(pluginPageStatus);
+          document.getElementById("sbPlugins").hidden = false;
+      } else {
+        // console.log(serversList);
+        document.getElementById("sbPlugins").hidden = true;
+      }
+
     }
-
   }
 
   setInterval(() => {

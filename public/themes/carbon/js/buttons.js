@@ -2,6 +2,7 @@
         
     var elconsole = document.getElementById("Console");
     var elplugins = document.getElementById("Plugins");
+    //var elversion = document.getElementById("Version");
     var elfiles = document.getElementById("Files");
     var eldatabases = document.getElementById("Databases");
     var elschedules = document.getElementById("Schedules");
@@ -112,9 +113,18 @@
 
         document.getElementById("sbPlugins").style.display = "none";
     }
-    if(typeof(elmanage) != 'undefined' && elmanage != null){
+    //if(typeof(elversion) != 'undefined' && elversion != null){
         
-        document.getElementById("sbManage").style.display = "";
+    //  document.getElementById("sbVersion").style.display = "";
+
+    //} 
+    //else{
+
+     //   document.getElementById("sbVersion").style.display = "";
+    //}
+    if(typeof(elmanage) != 'undefined' && elmanage != null){
+          
+          document.getElementById("sbManage").style.display = "";
 
     } 
     else{
@@ -122,7 +132,7 @@
         document.getElementById("sbManage").style.display = "none";
     }
 
-      }, 500);
+  }, 500);
 
 
 
@@ -165,7 +175,7 @@ function myFunction() {
           var button = document.getElementById("Startup");
           button.click('Startup')
       }
-          function openSettings() {
+      function openSettings() {
           var button = document.getElementById("Settings");
           button.click('Settings')
       }
@@ -186,6 +196,12 @@ function myFunction() {
         var button = document.getElementById("Plugins");
         button.click('Plugins');
     }
+
+    //function openVersion() {
+      //var button = document.getElementById("Version");
+      //button.click('Version');
+    //}
+  
     function logout() {
         var button = document.getElementById("logout");
         button.click('logout')

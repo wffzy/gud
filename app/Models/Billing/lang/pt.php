@@ -43,6 +43,7 @@ return [
   'admin_page' => 'Admin',
   'out_page' => 'Fechar Sessão',
   'plugin_page' => 'Plugins',
+  'version_page' => 'Version',
 
  
   // Account

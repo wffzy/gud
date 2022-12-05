@@ -10,6 +10,7 @@
 
           <div style=" @if(!config('billing.billing')) display: none !important; @endif ">
             <a href="{{ route('billing.link') }}" class="nav_link @if($active_nav == 'billing') sb-active @endif" id="sbBilling"><i class='bx bxs-package nav_icon sidebar-card' ></i> <span class="nav_name">{!! Bill::lang()->get('billing_page') !!}</span> </a>
+            <a href="{{ route('tickets.index') }}" class="nav_link @if($active_nav == 'tickets') sb-active @endif" id="sbTickets"><i class='bx bx-conversation nav_icon sidebar-card' ></i> <span class="nav_name">Tickets</span> </a>
             <a href="{{ route('billing.balance') }}" class="nav_link @if($active_nav == 'balance') sb-active @endif" id="sbBalance"><i class='bx bx-wallet nav_icon sidebar-card'></i> <span class="nav_name">{!! Bill::lang()->get('balance_page') !!}</span> </a>
             <a href="{{ route('billing.cart') }}" class="nav_link @if($active_nav == 'cart') sb-active @endif" id="sbCart"><i class='bx bx-basket nav_icon sidebar-card' ></i> <span class="nav_name">{!! Bill::lang()->get('cart_page') !!}</span> </a>
             <a href="{{ route('billing.my-plans') }}" class="nav_link @if($active_nav == 'invoices') sb-active @endif" id="sbInvoices"><i class='bx bx-receipt nav_icon sidebar-card' ></i> <span class="nav_name">{!! Bill::lang()->get('plan_page') !!}</span> </a>
@@ -32,6 +33,8 @@
               <div class="dropdown-divider"></div>
               <a onClick="openConsole()" class="nav_link" id="sbConsole" style="display: none;"> <i class='bx bx-terminal nav_icon sidebar-card'></i> <span class="nav_name">{!! Bill::lang()->get('console_page') !!}</span> </a>
               <a onClick="openFiles()" class="nav_link" id="sbFiles" style="display: none;"> <i class='bx bx-folder nav_icon sidebar-card'></i> <span class="nav_name">{!! Bill::lang()->get('files_page') !!}</span> </a>
+
+              <a onclick="openVersion()" href="" class="nav_link" id="sbVersion" style="display: none;"> <i class='bx bx-chevrons-down nav_icon sidebar-card'></i> <span class="nav_name">{!! Bill::lang()->get('version_page') !!}</span> </a>
 
               <a onclick="openPlugins()" class="nav_link" id="sbPlugins" style="display: none;"> <i class='bx bx-plug nav_icon sidebar-card' ></i>  <span class="nav_name">{!! Bill::lang()->get('plugin_page') !!}</span> </a>
 

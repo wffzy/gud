@@ -93,4 +93,9 @@ class BillingUsers extends Model
   {
     return count(self::get());
   }
+
+  public static function pterodactyl($id)
+  {
+    return User::find($id);
+  }
 }

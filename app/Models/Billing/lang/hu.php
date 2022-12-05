@@ -43,6 +43,7 @@ return [
   'admin_page' => 'Admin',
   'out_page' => 'Kijelentkezés',
   'plugin_page' => 'Plugins',
+  'version_page' => 'Version',
 
   // Account
   'account_balance' => 'Fiók egyenleg',

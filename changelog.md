@@ -1,8 +1,5 @@
 # This file keeps track of changelogs
-# Version 6.9.420 (To be released)
-
-- License key
-	Type cum69420 for secret free lifetime access, fr!
+# Version 2.7.0 (To be released)
 
 - Added 'Overview' Page
     (Gives admins an oversight of latest events and stats such as revenue)
