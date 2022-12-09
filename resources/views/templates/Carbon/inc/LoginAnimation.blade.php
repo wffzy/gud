@@ -62,22 +62,6 @@ background-color: transparent !important;
     background: #161624 !important;
     background-size: cover;
     }
-  .fullscreen-video-background {
-	display: none;
-}
- .fullscreen-video-background ._pattern-overlay {
-	display: none;
-}
- .fullscreen-video-background #_buffering-background {
-	display: none;
-}
- .fullscreen-video-background #_youtube-iframe-wrapper {
-	display: none;
-}
- .fullscreen-video-background #_youtube-iframe-wrapper #_youtube-iframe {
-	 display: none;
-}
- 
 	</style>
 <script>
     		// 2. This code loads the Youtube IFrame Player API code asynchronously.
