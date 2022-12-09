@@ -48,38 +48,6 @@
     </form>
 
   <ul class="navbar-nav align-items-center ml-auto ml-md-0 d-inline">
-
-    <ul class="nav-item dropdown navbar-nav align-items-end ml-auto ml-md-0 mr-3">
-      <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <div class="media align-items-center">
-          <span class="img-thumbnail" style="border: 0 none; box-shadow: none;">
-            <img src="https://flagcdn.com/32x24/{{ Bill::lang()->getActiveLang() }}.png" alt="">
-          </span>
-          <div class="media-body  ml-2  d-none d-lg-block">
-            <span class="mb-0 text-sm  font-weight-bold">
-              {{ Bill::lang()->get(Bill::lang()->getActiveLang()) }}
-            </span>
-          </div>
-        </div>
-      </a>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-        @foreach(Bill::lang()->getAll() as $key => $value)
-        <a class="dropdown-item" href="{{ route('billing.toggle.lang', ['lang' => $key]) }}">
-          <div class="media align-items-center">
-            <span class="">
-              <img src="https://flagcdn.com/32x24/{{ $key }}.png" alt="">
-            </span>
-            <div class="media-body  ml-2  d-none d-lg-block">
-              <span class="mb-0 text-sm  font-weight-bold">
-                {{ Bill::lang()->get($key) }}
-              </span>
-            </div>
-          </div>
-        </a>
-        @endforeach
-      </div>
-    </ul>
-
       <li class="nav-item dropdown" style="width: auto;">
         <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <div class="media align-items-center">
